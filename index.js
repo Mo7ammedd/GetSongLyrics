@@ -27,6 +27,7 @@ app.get('/lyrics', (req, res) => {
 
                 const response = {
                     song: options.title,
+                    artist: options.artist, // Add artist name to the response
                     verses: versesArray.map((verse, index) => {
                         return {
                             number: index + 1,
