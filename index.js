@@ -1,5 +1,6 @@
 const express = require('express');
 const { getLyrics } = require('genius-lyrics-api');
+require('dotenv').config(); 
 
 const app = express();
 const PORT = 3000;
@@ -16,7 +17,7 @@ app.get('/lyrics', (req, res) => {
     const options = {
         title: title,
         artist: artist,
-        apiKey: 'ETZO_mIl1KzGo-X0BuQKgKF_rDgqkYWMyjgirLAeQdwWBHiZM9Z8BxDhVF_aYjGS', // Replace with your actual token
+        apiKey: process.env.GENIUS_API_KEY, 
         optimizeQuery: true
     };
 
@@ -27,7 +28,7 @@ app.get('/lyrics', (req, res) => {
 
                 const response = {
                     song: options.title,
-                    artist: options.artist, // Add artist name to the response
+                    artist: options.artist, 
                     verses: versesArray.map((verse, index) => {
                         return {
                             number: index + 1,
